@@ -1,0 +1,1535 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>sumit.builds.ai — AI Engineer Roadmap</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Nunito:wght@400;600;700;800&display=swap"
+    rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #15110d;
+      --surface: #1f1a14;
+      --surface2: #2a1f16;
+      --border: #2c2620;
+      --text: #f5ede0;
+      --muted: #c2b8a8;
+      --faint: #7a7163;
+      --lav: #ff7a3d;
+      --peach: #ffb84a;
+      --s1: #58a6ff;
+      --s2: #3fb950;
+      --s3: #d29922;
+      --s4: #f78166;
+      --tag-bg: #2a1f16;
+      --radius: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Nunito', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      background-image:
+        radial-gradient(900px 500px at 0% 0%, rgba(255, 122, 61, 0.07), transparent 60%),
+        radial-gradient(600px 400px at 100% 100%, rgba(255, 184, 74, 0.05), transparent 65%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ── TOPBAR / SITE NAV ── */
+    .site-nav {
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
+      position: sticky;
+      top: 0;
+      z-index: 200;
+    }
+
+    .site-nav-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 28px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .site-nav-brand {
+      font-family: 'Caveat', cursive;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: 0.01em;
+    }
+
+    .site-nav-brand .dot {
+      color: var(--lav);
+    }
+
+    .site-nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .site-nav-links a {
+      transition: color 0.15s;
+    }
+
+    .site-nav-links a:hover {
+      color: var(--text);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      text-align: center;
+      padding: 52px 20px 40px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero h1 {
+      font-family: 'Caveat', cursive;
+      font-size: clamp(2.8rem, 7vw, 5rem);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.01em;
+      margin-bottom: 14px;
+      color: var(--text);
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      max-width: 500px;
+      margin: 0 auto 24px;
+      line-height: 1.65;
+    }
+
+    /* ── HERO SOCIALS (pill style matching homepage) ── */
+    .hero-socials {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .soc {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 15px;
+      border: 1.5px solid var(--border);
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--muted);
+      background: var(--surface);
+      transition: border-color 0.15s, color 0.15s;
+      letter-spacing: 0.04em;
+    }
+
+    .soc:hover {
+      color: var(--text);
+      border-color: var(--lav);
+    }
+
+    .soc svg {
+      flex-shrink: 0;
+    }
+
+    /* ── TAB BAR ── */
+    .tab-bar-wrap {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 56px;
+      z-index: 100;
+    }
+
+    .tab-bar {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      align-items: stretch;
+      padding: 0 16px;
+      gap: 4px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .tab-bar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .tab-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 18px;
+      background: none;
+      border: none;
+      border-bottom: 3px solid transparent;
+      color: var(--muted);
+      font-size: 0.8rem;
+      font-weight: 700;
+      font-family: 'Nunito', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: color 0.15s, border-color 0.15s;
+      flex-shrink: 0;
+      margin-bottom: -1px;
+    }
+
+    .tab-btn:hover {
+      color: var(--text);
+    }
+
+    .tab-btn .num {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      border: 2px solid currentColor;
+      flex-shrink: 0;
+      transition: background 0.15s;
+    }
+
+    .tab-btn[data-stage="1"].active {
+      color: var(--s1);
+      border-bottom-color: var(--s1);
+    }
+
+    .tab-btn[data-stage="2"].active {
+      color: var(--s2);
+      border-bottom-color: var(--s2);
+    }
+
+    .tab-btn[data-stage="3"].active {
+      color: var(--s3);
+      border-bottom-color: var(--s3);
+    }
+
+    .tab-btn[data-stage="4"].active {
+      color: var(--s4);
+      border-bottom-color: var(--s4);
+    }
+
+    .tab-btn[data-stage="1"].active .num {
+      background: rgba(88, 166, 255, 0.12);
+    }
+
+    .tab-btn[data-stage="2"].active .num {
+      background: rgba(63, 185, 80, 0.12);
+    }
+
+    .tab-btn[data-stage="3"].active .num {
+      background: rgba(210, 153, 34, 0.12);
+    }
+
+    .tab-btn[data-stage="4"].active .num {
+      background: rgba(247, 129, 102, 0.12);
+    }
+
+    /* ── CONTAINER ── */
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 28px 20px 80px;
+    }
+
+    /* ── STAGE PANELS ── */
+    .stage-panel {
+      display: none;
+    }
+
+    .stage-panel.active {
+      display: block;
+    }
+
+    /* ── STAGE CARD ── */
+    .stage-card {
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .stage-header {
+      padding: 24px 28px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .stage-badge {
+      font-size: 1.8rem;
+      flex-shrink: 0;
+      line-height: 1;
+      margin-top: 2px;
+    }
+
+    .stage-meta {
+      flex: 1;
+    }
+
+    .stage-label {
+      font-size: 0.68rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+
+    .s1 .stage-label {
+      color: var(--s1);
+    }
+
+    .s2 .stage-label {
+      color: var(--s2);
+    }
+
+    .s3 .stage-label {
+      color: var(--s3);
+    }
+
+    .s4 .stage-label {
+      color: var(--s4);
+    }
+
+    .stage-title {
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .stage-goal {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .stage-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @media (max-width: 620px) {
+      .stage-body {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .section {
+      padding: 20px 24px;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section:nth-child(even) {
+      border-right: none;
+    }
+
+    .section:nth-last-child(-n+2) {
+      border-bottom: none;
+    }
+
+    @media (max-width: 620px) {
+      .section {
+        border-right: none;
+      }
+
+      .section:last-child {
+        border-bottom: none;
+      }
+    }
+
+    .section-title {
+      font-size: 0.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--faint);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .section-title span {
+      font-size: 1rem;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    ul li {
+      color: var(--text);
+      font-size: 0.88rem;
+      padding: 3px 0 3px 14px;
+      position: relative;
+    }
+
+    ul li::before {
+      content: '›';
+      position: absolute;
+      left: 0;
+      color: var(--faint);
+    }
+
+    .packages-section {
+      padding: 20px 24px;
+      border-top: 1px solid var(--border);
+      background: var(--surface2);
+    }
+
+    .packages-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .pkg {
+      background: var(--tag-bg);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-family: 'SFMono-Regular', Consolas, monospace;
+      font-size: 0.78rem;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pkg .pkg-note {
+      color: var(--faint);
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.72rem;
+    }
+
+    .s1 .pkg-key {
+      color: var(--s1);
+    }
+
+    .s2 .pkg-key {
+      color: var(--s2);
+    }
+
+    .s3 .pkg-key {
+      color: var(--s3);
+    }
+
+    .s4 .pkg-key {
+      color: var(--s4);
+    }
+
+    .timeline-section {
+      padding: 20px 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .timeline-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .timeline-day {
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+      padding-top: 1px;
+      min-width: 70px;
+    }
+
+    .s1 .timeline-day {
+      color: var(--s1);
+    }
+
+    .s2 .timeline-day {
+      color: var(--s2);
+    }
+
+    .s3 .timeline-day {
+      color: var(--s3);
+    }
+
+    .s4 .timeline-day {
+      color: var(--s4);
+    }
+
+    .timeline-text {
+      font-size: 0.87rem;
+      color: var(--text);
+    }
+
+    /* ── DIFFICULTY BADGES ── */
+    .difficulty {
+      font-size: 0.62rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-radius: 4px;
+      padding: 1px 6px;
+      vertical-align: middle;
+    }
+
+    .difficulty.beginner {
+      background: rgba(88, 166, 255, 0.12);
+      color: var(--s1);
+      border: 1px solid rgba(88, 166, 255, 0.25);
+    }
+
+    .difficulty.intermediate {
+      background: rgba(63, 185, 80, 0.12);
+      color: var(--s2);
+      border: 1px solid rgba(63, 185, 80, 0.25);
+    }
+
+    .difficulty.advanced {
+      background: rgba(210, 153, 34, 0.12);
+      color: var(--s3);
+      border: 1px solid rgba(210, 153, 34, 0.25);
+    }
+
+    .difficulty.expert {
+      background: rgba(247, 129, 102, 0.12);
+      color: var(--s4);
+      border: 1px solid rgba(247, 129, 102, 0.25);
+    }
+
+    /* ── PREREQ / START BADGE ── */
+    .prereq-note {
+      margin-top: 10px;
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .prereq-note.start {
+      color: var(--s2);
+      font-style: normal;
+      font-weight: 600;
+    }
+
+    .start-badge {
+      font-size: 0.6rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      background: rgba(255, 122, 61, 0.15);
+      border: 1px solid rgba(255, 122, 61, 0.35);
+      color: var(--lav);
+      border-radius: 4px;
+      padding: 1px 5px;
+      margin-left: 2px;
+    }
+
+    /* ── STAGE NAV ── */
+    .stage-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 20px;
+      padding: 0 2px;
+    }
+
+    .nav-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 14px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      font-family: 'Nunito', sans-serif;
+      color: var(--muted);
+      cursor: pointer;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .nav-btn:hover {
+      color: var(--text);
+      border-color: var(--lav);
+    }
+
+    .nav-btn:disabled {
+      opacity: 0.25;
+      cursor: not-allowed;
+    }
+
+    .stage-counter {
+      font-size: 0.75rem;
+      color: var(--faint);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── BOTTOM: INSIGHT + REALITY + FOCUS ── */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 40px 0;
+    }
+
+    .insight-card {
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 32px;
+      margin-bottom: 24px;
+    }
+
+    .insight-card h2 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+
+    .stack-flow {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .stack-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.88rem;
+    }
+
+    .stack-stage {
+      font-weight: 800;
+      min-width: 80px;
+      font-size: 0.78rem;
+    }
+
+    .stack-arrow {
+      color: var(--faint);
+    }
+
+    .stack-tools {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .tag {
+      background: var(--tag-bg);
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      padding: 2px 8px;
+      font-family: 'SFMono-Regular', Consolas, monospace;
+      font-size: 0.75rem;
+    }
+
+    .reality-check {
+      background: linear-gradient(135deg, #2a1a05 0%, #1f1a14 100%);
+      border: 1.5px solid #4a3010;
+      border-radius: var(--radius);
+      padding: 28px 32px;
+      margin-bottom: 24px;
+    }
+
+    .reality-check h2 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+
+    .reality-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .reality-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.88rem;
+    }
+
+    .reality-row .cross {
+      color: var(--s4);
+      font-weight: 800;
+    }
+
+    .reality-row .not-enough {
+      text-decoration: line-through;
+      color: var(--faint);
+    }
+
+    .focus-card {
+      background: linear-gradient(135deg, #2a1810 0%, #221a10 100%);
+      border: 1.5px solid #4d2510;
+      border-radius: var(--radius);
+      padding: 28px 32px;
+    }
+
+    .focus-card h2 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .focus-card .subtitle {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .focus-pkgs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .focus-pkg {
+      background: rgba(255, 122, 61, 0.08);
+      border: 1px solid rgba(255, 122, 61, 0.25);
+      border-radius: 8px;
+      padding: 10px 16px;
+    }
+
+    .focus-pkg .name {
+      font-family: 'SFMono-Regular', Consolas, monospace;
+      font-size: 0.9rem;
+      color: var(--lav);
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .focus-pkg .desc {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    /* ── NEXT UP ── */
+    .next-up {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 20px 64px;
+    }
+
+    .next-up-label {
+      font-family: 'Caveat', cursive;
+      font-size: 28px;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+
+    .next-up-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 12px;
+    }
+
+    .next-up-card {
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: border-color 0.15s, transform 0.15s;
+    }
+
+    .next-up-card:hover {
+      border-color: var(--lav);
+      transform: translateY(-2px);
+    }
+
+    .next-up-card.dim {
+      opacity: 0.45;
+      cursor: default;
+    }
+
+    .next-up-card.dim:hover {
+      border-color: var(--border);
+      transform: none;
+    }
+
+    .nuc-tag {
+      font-size: 0.65rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      width: fit-content;
+    }
+
+    .nuc-tag.blue {
+      background: rgba(255, 122, 61, 0.12);
+      color: var(--lav);
+    }
+
+    .nuc-tag.green {
+      background: rgba(63, 185, 80, 0.12);
+      color: var(--s2);
+    }
+
+    .nuc-tag.yellow {
+      background: rgba(210, 153, 34, 0.12);
+      color: var(--s3);
+    }
+
+    .nuc-title {
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.4;
+    }
+
+    .nuc-desc {
+      font-size: 0.79rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .nuc-action {
+      font-size: 0.78rem;
+      color: var(--lav);
+      font-weight: 700;
+      margin-top: 2px;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 20px 44px;
+      text-align: center;
+    }
+
+    .footer-wordmark {
+      font-family: 'Caveat', cursive;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .footer-wordmark .dot {
+      color: var(--lav);
+    }
+
+    .footer-socials {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .footer-social-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      color: var(--faint);
+      font-size: 0.8rem;
+      font-weight: 600;
+      transition: color 0.15s;
+    }
+
+    .footer-social-link:hover {
+      color: var(--text);
+    }
+
+    .footer-dot {
+      color: var(--border);
+    }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      color: var(--faint);
+      font-style: italic;
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 620px) {
+
+      /* fix section bottom-border for single-column layout */
+      .section:nth-last-child(-n+2) {
+        border-bottom: 1px solid var(--border);
+      }
+
+      .section:last-child {
+        border-bottom: none;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .site-nav-links {
+        display: none;
+      }
+
+      .hero {
+        padding: 28px 16px 20px;
+      }
+
+      .hero h1 {
+        font-size: 2.4rem;
+      }
+
+      .hero p {
+        font-size: 0.88rem;
+      }
+
+      .tab-btn {
+        padding: 12px 12px;
+        font-size: 0.72rem;
+      }
+
+      .tab-btn .num {
+        width: 18px;
+        height: 18px;
+        font-size: 0.68rem;
+      }
+
+      .container {
+        padding: 20px 14px 60px;
+      }
+
+      .stage-header {
+        padding: 18px 18px 14px;
+        gap: 12px;
+      }
+
+      .stage-badge {
+        font-size: 1.5rem;
+      }
+
+      .stage-title {
+        font-size: 1.1rem;
+      }
+
+      .section {
+        padding: 16px 16px;
+      }
+
+      .packages-section {
+        padding: 16px 16px;
+      }
+
+      .timeline-section {
+        padding: 16px 16px;
+      }
+
+      .insight-card,
+      .reality-check,
+      .focus-card {
+        padding: 20px 18px;
+      }
+
+      .stack-row {
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+
+      .stack-stage {
+        min-width: unset;
+      }
+
+      .stage-nav {
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+      }
+
+      .nav-btn {
+        padding: 8px 12px;
+        font-size: 0.78rem;
+      }
+
+      .next-up {
+        padding: 0 14px 48px;
+      }
+
+      .next-up-label {
+        font-size: 24px;
+      }
+
+      .footer {
+        padding: 20px 16px 36px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- SITE NAV -->
+  <nav class="site-nav">
+    <div class="site-nav-inner">
+      <a href="../index.html" class="site-nav-brand">sumit<span class="dot">.</span>builds<span
+          class="dot">.</span>ai</a>
+      <div class="site-nav-links">
+        <a href="../index.html#writing">Writing</a>
+        <a href="https://www.instagram.com/sumit.builds.ai" target="_blank">Instagram</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <h1>AI Engineer Roadmap</h1>
+    <p>A practical, build-first progression — from your first API call to shipping multi-agent production systems. Pick
+      your stage and follow the plan.</p>
+    <div class="hero-socials">
+      <a class="soc" href="https://www.instagram.com/sumit.builds.ai" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+          <circle cx="12" cy="12" r="4" />
+          <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+        </svg>
+        @sumit.builds.ai
+      </a>
+      <a class="soc" href="https://www.linkedin.com/in/khandelwalsumit/" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+          <rect x="2" y="9" width="4" height="12" />
+          <circle cx="4" cy="4" r="2" />
+        </svg>
+        LinkedIn
+      </a>
+      <a class="soc" href="https://www.youtube.com/@Khandelwalsumit" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.4a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z" />
+          <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="white" />
+        </svg>
+        YouTube
+      </a>
+    </div>
+  </div>
+
+  <!-- TAB BAR -->
+  <div class="tab-bar-wrap">
+    <div class="tab-bar">
+      <button class="tab-btn active" data-stage="1" onclick="switchTab(1)">
+        <span class="num">1</span> Prompt Wrapper
+      </button>
+      <button class="tab-btn" data-stage="2" onclick="switchTab(2)">
+        <span class="num">2</span> RAG Builder
+      </button>
+      <button class="tab-btn" data-stage="3" onclick="switchTab(3)">
+        <span class="num">3</span> Agent Engineer
+      </button>
+      <button class="tab-btn" data-stage="4" onclick="switchTab(4)">
+        <span class="num">4</span> Orchestrator
+      </button>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <!-- ═══ STAGE 1 ═══ -->
+    <div class="stage-panel active" id="panel-1">
+      <div class="stage-card s1">
+        <div class="stage-header">
+          <div class="stage-badge">🧠</div>
+          <div class="stage-meta">
+            <div class="stage-label">Stage 1 · <span class="difficulty beginner">Beginner</span></div>
+            <div class="stage-title">The Prompt Wrapper</div>
+            <div class="stage-goal">Learn how LLMs behave + ship simple usable apps</div>
+            <div class="prereq-note start">✦ No prior AI experience needed — this is where everyone starts</div>
+          </div>
+        </div>
+
+        <div class="stage-body">
+          <div class="section">
+            <div class="section-title"><span>📖</span> What to Learn</div>
+            <ul>
+              <li>Prompt structure (system vs user)</li>
+              <li>Temperature, tokens, context limits</li>
+              <li>Basic API usage (chat/completions)</li>
+              <li>Simple UI (Streamlit / Next.js)</li>
+            </ul>
+          </div>
+          <div class="section">
+            <div class="section-title"><span>🏗</span> What to Build</div>
+            <ul>
+              <li>AI email writer</li>
+              <li>Resume improver</li>
+              <li>Simple chatbot with fixed prompt</li>
+            </ul>
+          </div>
+          <div class="section">
+            <div class="section-title"><span>✅</span> Skills After</div>
+            <ul>
+              <li>Idea → working AI feature in a few hours</li>
+              <li>Understand why prompts fail</li>
+            </ul>
+          </div>
+          <div class="section">
+            <div class="section-title"><span>🧪</span> Practice</div>
+            <ul>
+              <li>Sending prompts programmatically</li>
+              <li>Handling responses</li>
+              <li>Basic prompt templating</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="packages-section">
+          <div class="section-title"><span>📦</span> Python Packages</div>
+          <div class="packages-grid">
+            <div class="pkg"><span class="pkg-key">openai</span> <span class="pkg-note">LLM API</span></div>
+            <div class="pkg"><span class="pkg-key">anthropic</span> <span class="pkg-note">LLM API</span></div>
+            <div class="pkg"><span class="pkg-key">google-generativeai</span> <span class="pkg-note">LLM API</span>
+            </div>
+            <div class="pkg"><span class="pkg-key">python-dotenv</span> <span class="pkg-note">env vars</span></div>
+            <div class="pkg"><span class="pkg-key">streamlit</span> <span class="pkg-note">quick UI</span></div>
+            <div class="pkg"><span class="pkg-key">gradio</span> <span class="pkg-note">quick UI</span></div>
+            <div class="pkg"><span class="pkg-key">requests</span> <span class="pkg-note">API calls</span></div>
+          </div>
+        </div>
+
+        <div class="timeline-section">
+          <div class="section-title"><span>📅</span> 5–7 Day Plan</div>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-day">Day 1–2</div>
+              <div class="timeline-text">Learn prompting patterns (few-shot, role prompting)</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-day">Day 3</div>
+              <div class="timeline-text">Call LLM API (Vertex / OpenAI / Claude)</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-day">Day 4–5</div>
+              <div class="timeline-text">Build 1 simple app end-to-end</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-day">Day 6–7</div>
+              <div class="timeline-text">Improve prompts + handle edge cases</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stage-nav">
+        <span class="stage-counter" style="color: var(--lav);">✦ Start here</span>
+        <span class="stage-counter">Stage 1 of 4</span>
+        <button class="nav-btn" onclick="switchTab(2)">RAG Builder →</button>
+      </div>
+    </div>
+
+    <!-- ═══ STAGE 2 ═══ -->
+    <div class="stage-panel" id="panel-2">
+      <div class="stage-card s2">
+        <div class="stage-header">
+          <div class="stage-badge">📚</div>
+          <div class="stage-meta">
+            <div class="stage-label">Stage 2 · <span class="difficulty intermediate">Intermediate</span></div>
+            <div class="stage-title">The RAG Builder</div>
+            <div class="stage-goal">Make AI "know things" reliably</div>
+            <div class="prereq-note">→ Complete Stage 1 before starting here</div>
+          </div>
+        </div>
+
+        <div class="stage-body">
+          <div class="section">
+            <div class="section-title"><span>📖</span> What to Learn</div>
+            <ul>
+              <li>Embeddings + vector databases (FAISS, Pinecone)</li>
+              <li>Chunking strategies</li>
+              <li>Retrieval tuning (top-k, reranking)</li>
+              <li>Basic evals (does it retrieve correctly?)</li>
+            </ul>
+          </div>
+          <div class="section">
+            <div class="section-title"><span>🏗</span> What to Build</div>
+            <ul>
+              <li>Chat with PDFs</li>
+              <li>Internal knowledge bot</li>
+              <li>Docs Q&A system</li>
+            </ul>
+          </div>
+          <div class="section">
+            <div class="section-title"><span>✅</span> Skills After</div>
+            <ul>
+              <li>Debug "why didn't it answer correctly?"</li>
+              <li>Understand retrieval vs generation failures</li>
+            </ul>
+          </div>
+          <div class="section">
+            <div class="section-title"><span>🧪</span> Practice</div>
+            <ul>
+              <li>Chunking strategies</li>
+              <li>Embedding + indexing</li>
+              <li>Retrieval tuning (top-k, filters)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="packages-section">
+          <div class="section-title"><span>📦</span> Python Packages</div>
+          <div class="packages-grid">
+            <div class="pkg"><span class="pkg-key">langchain</span> <span class="pkg-note">RAG pipelines</span></div>
+            <div class="pkg"><span class="pkg-key">llama-index</span> <span class="pkg-note">alt RAG framework</span>
+            </div>
+            <div class="pkg"><span class="pkg-key">faiss-cpu</span> <span class="pkg-note">vector DB</span></div>
+            <div class="pkg"><span class="pkg-key">chromadb</span> <span class="pkg-note">local vector DB</span></div>
+            <div class="pkg"><span class="pkg-key">sentence-transformers</span> <span class="pkg-note">embeddings</span>
+            </div>
+            <div class="pkg"><span class="pkg-key">tiktoken</span> <span class="pkg-note">token counting</span></div>
+            <div class="pkg"><span class="pkg-key">pypdf</span> <span class="pkg-note">doc parsing</span></div>
+            <div class="pkg"><span class="pkg-key">unstructured</span> <span class="pkg-note">doc parsing</span></div>
+          </div>
+        </div>
+
+        <div class="timeline-section">
+          <div class="section-title"><span>📅</span> 10–14 Day Plan</div>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-day">Day 1–2</div>
+              <div class="timeline-text">Learn embeddings + vector DB basics</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-day">Day 3–5</div>
+              <div class="timeline-text">Build simple RAG pipeline</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-day">Day 6–8</div>
+              <div class="timeline-text">Experiment with chunking + retrieval</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-day">Day 9–11</div>
+              <div class="timeline-text">Add evaluation dataset</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-day">Day 12–14</div>
+              <div class="timeline-text">Improve accuracy + latency</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stage-nav">
+        <button class="nav-btn" onclick="switchTab(1)">← Prompt Wrapper</button>
+        <span class="stage-counter">Stage 2 of 4</span>
+        <button class="nav-btn" onclick="switchTab(3)">Agent Engineer →</button>
+      </div>
+    </div>
+
+    <!-- ═══ STAGE 3 ═══ -->
+    <div class="stage-panel" id="panel-3">
+      <div class="stage-card s3">
+        <div class="stage-header">
+          <div class="stage-badge">⚙️</div>
+          <div class="stage-meta">
+            <div class="stage-label">Stage 3 · <span class="difficulty advanced">Advanced</span></div>
+            <div class="stage-title">The Agent Engineer</div>
+            <div class="stage-goal">Build systems that act, not just answer</div>
+            <div class="prereq-note">→ Complete Stage 2 before starting here</div>
+          </div>
+        </div>
+
+        <div class="stage-body">
+          <div class="section">
+            <div class="section-title"><span>📖</span> What to Learn</div>
+            <ul>
+              <li>Tool calling (functions / APIs)</li>
+              <li>Multi-step reasoning (ReAct, planning)</li>
+              <li>State + memory handling</li>
+              <li>Retry, fallback, guardrails</li>
+              <li>Observability (LangSmith, logging)</li>
+            </ul>
+          </div>
+          <div class="section">
+            <div class="section-title"><span>🏗</span> What to Build</div>
+            <ul>
+              <li>AI research agent (search → summarize → refine)</li>
+              <li>Data analyst agent (query → tool → summarize)</li>
+              <li>Automation agent (email, scraping, workflows)</li>
+            </ul>
+          </div>
+          <div class="section">
+            <div class="section-title"><span>✅</span> Skills After</div>
+            <ul>
+              <li>Design flows, not just prompts</li>
+              <li>Handle failures mid-task</li>
+              <li>Think in systems, not responses</li>
+            </ul>
+          </div>
+          <div class="section">
+            <div class="section-title"><span>🧪</span> Practice</div>
+            <ul>
+              <li>Tool calling patterns</li>
+              <li>Multi-step reasoning (ReAct style)</li>
+              <li>Structured outputs (JSON schemas)</li>
+              <li>Error handling + retries</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="packages-section">
+          <div class="section-title"><span>📦</span> Python Packages</div>
+          <div class="packages-grid">
+            <div class="pkg"><span class="pkg-key">langchain</span> <span class="pkg-note">agents + tools</span></div>
+            <div class="pkg"><span class="pkg-key">langgraph</span> <span class="pkg-note">⭐ structured workflows</span>
+            </div>
+            <div class="pkg"><span class="pkg-key">pydantic</span> <span class="pkg-note">structured outputs</span>
+            </div>
+            <div class="pkg"><span class="pkg-key">tenacity</span> <span class="pkg-note">retries + robustness</span>
+            </div>
+            <div class="pkg"><span class="pkg-key">duckdb</span> <span class="pkg-note">fast data queries</span></div>
+            <div class="pkg"><span class="pkg-key">httpx</span> <span class="pkg-note">async API calls</span></div>
+            <div class="pkg"><span class="pkg-key">langsmith</span> <span class="pkg-note">tracing + evals</span></div>
+          </div>
+        </div>
+
+        <div class="timeline-section">
+          <div class="section-title"><span>📅</span> 2–4 Week Plan</div>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-day">Week 1</div>
+              <div class="timeline-text">Tool calling + simple agent loop</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-day">Week 2</div>
+              <div class="timeline-text">Multi-step workflows + memory</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-day">Week 3</div>
+              <div class="timeline-text">Add evals + monitoring</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-day">Week 4</div>
+              <div class="timeline-text">Add retries, fallbacks, guardrails</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stage-nav">
+        <button class="nav-btn" onclick="switchTab(2)">← RAG Builder</button>
+        <span class="stage-counter">Stage 3 of 4</span>
+        <button class="nav-btn" onclick="switchTab(4)">Orchestrator →</button>
+      </div>
+    </div>
+
+    <!-- ═══ STAGE 4 ═══ -->
+    <div class="stage-panel" id="panel-4">
+      <div class="stage-card s4">
+        <div class="stage-header">
+          <div class="stage-badge">🧩</div>
+          <div class="stage-meta">
+            <div class="stage-label">Stage 4 · <span class="difficulty expert">Expert</span></div>
+            <div class="stage-title">The Orchestrator</div>
+            <div class="stage-goal">Build reliable multi-agent systems in production</div>
+            <div class="prereq-note">→ Complete Stage 3 before starting here</div>
+          </div>
+        </div>
+
+        <div class="stage-body">
+          <div class="section">
+            <div class="section-title"><span>📖</span> What to Learn</div>
+            <ul>
+              <li>Multi-agent architectures (planner / executor / critic)</li>
+              <li>Task decomposition</li>
+              <li>Human-in-the-loop design</li>
+              <li>System reliability + latency tradeoffs</li>
+              <li>Production concerns (cost, scaling, monitoring)</li>
+            </ul>
+          </div>
+          <div class="section">
+            <div class="section-title"><span>🏗</span> What to Build</div>
+            <ul>
+              <li>Multi-agent research system</li>
+              <li>Customer support analytics pipeline</li>
+              <li>End-to-end workflow with human approvals</li>
+            </ul>
+          </div>
+          <div class="section">
+            <div class="section-title"><span>✅</span> Skills After</div>
+            <ul>
+              <li>Design complex AI systems end-to-end</li>
+              <li>Think about coordination, not prompts</li>
+              <li>Build for production, not demos</li>
+            </ul>
+          </div>
+          <div class="section">
+            <div class="section-title"><span>🧪</span> Practice</div>
+            <ul>
+              <li>Agent-to-agent communication</li>
+              <li>Task routing + delegation</li>
+              <li>Human-in-the-loop systems</li>
+              <li>Monitoring + observability</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="packages-section">
+          <div class="section-title"><span>📦</span> Python Packages</div>
+          <div class="packages-grid">
+            <div class="pkg"><span class="pkg-key">langgraph</span> <span class="pkg-note">⭐ orchestration
+                backbone</span></div>
+            <div class="pkg"><span class="pkg-key">fastapi</span> <span class="pkg-note">production APIs</span></div>
+            <div class="pkg"><span class="pkg-key">redis</span> <span class="pkg-note">caching + memory</span></div>
+            <div class="pkg"><span class="pkg-key">celery</span> <span class="pkg-note">background jobs</span></div>
+            <div class="pkg"><span class="pkg-key">rq</span> <span class="pkg-note">background jobs</span></div>
+            <div class="pkg"><span class="pkg-key">sqlalchemy</span> <span class="pkg-note">persistent state</span>
+            </div>
+            <div class="pkg"><span class="pkg-key">prometheus-client</span> <span class="pkg-note">metrics</span></div>
+            <div class="pkg"><span class="pkg-key">loguru</span> <span class="pkg-note">logging</span></div>
+            <div class="pkg"><span class="pkg-key">ray</span> <span class="pkg-note">distributed (optional)</span></div>
+          </div>
+        </div>
+
+        <div class="timeline-section">
+          <div class="section-title"><span>📅</span> 3–6 Week Plan</div>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-day">Week 1–2</div>
+              <div class="timeline-text">Build 2-agent system (planner + executor)</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-day">Week 3–4</div>
+              <div class="timeline-text">Add critic / evaluator agent</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-day">Week 5</div>
+              <div class="timeline-text">Add human approval checkpoints</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-day">Week 6</div>
+              <div class="timeline-text">Add monitoring + failure handling</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stage-nav">
+        <button class="nav-btn" onclick="switchTab(3)">← Agent Engineer</button>
+        <span class="stage-counter">Stage 4 of 4</span>
+        <span class="stage-counter" style="color: var(--s4);">🏁 Final stage</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- NEXT UP -->
+  <section class="next-up">
+    <div class="next-up-label">more from me</div>
+    <div class="next-up-grid">
+
+      <a href="../index.html" class="next-up-card">
+        <div class="nuc-tag blue">Home</div>
+        <div class="nuc-title">sumit.builds.ai</div>
+        <div class="nuc-desc">Who I am, what I build, and all upcoming content in one place.</div>
+        <div class="nuc-action">Visit →</div>
+      </a>
+
+      <div class="next-up-card dim">
+        <div class="nuc-tag green">Guide</div>
+        <div class="nuc-title">LangGraph in Production</div>
+        <div class="nuc-desc">Multi-agent workflows that hold up under real load.</div>
+        <div class="nuc-action" style="color: var(--faint)">Coming soon</div>
+      </div>
+
+      <div class="next-up-card dim">
+        <div class="nuc-tag yellow">Deep Dive</div>
+        <div class="nuc-title">RAG That Works at Scale</div>
+        <div class="nuc-desc">Chunking, re-ranking, and FAISS tuning for production RAG.</div>
+        <div class="nuc-action" style="color: var(--faint)">Coming soon</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-wordmark">sumit<span class="dot">.</span>builds<span class="dot">.</span>ai</div>
+    <div class="footer-socials">
+      <a class="footer-social-link" href="https://www.instagram.com/sumit.builds.ai" target="_blank">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+          <circle cx="12" cy="12" r="4" />
+        </svg>
+        Instagram
+      </a>
+      <span class="footer-dot">·</span>
+      <a class="footer-social-link" href="https://www.linkedin.com/in/khandelwalsumit/" target="_blank">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+          <rect x="2" y="9" width="4" height="12" />
+          <circle cx="4" cy="4" r="2" />
+        </svg>
+        LinkedIn
+      </a>
+      <span class="footer-dot">·</span>
+      <a class="footer-social-link" href="https://www.youtube.com/@Khandelwalsumit" target="_blank">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.4a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z" />
+          <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="white" />
+        </svg>
+        YouTube
+      </a>
+    </div>
+    <div class="footer-copy">build your way up, don't just consume content.</div>
+  </div>
+
+  <script>
+    function switchTab(n) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.stage-panel').forEach(p => p.classList.remove('active'));
+      document.querySelector(`.tab-btn[data-stage="${n}"]`).classList.add('active');
+      document.getElementById(`panel-${n}`).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+
+</html>
